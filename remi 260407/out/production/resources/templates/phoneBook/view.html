@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<h1>전화번호부 상세보기</h1>
+
+<table border="1" align="center" style="width: 80%;">
+    <tr>
+        <td>순번 : </td>
+        <td th:text="${phoneBook.id}"></td>
+    </tr>
+    <tr>
+        <td>이름 : </td>
+        <td th:text="${phoneBook.name}"></td>
+    </tr>
+    <tr>
+        <td>전화번호 : </td>
+        <td>[[${phoneBook.phone}]]</td>
+    </tr>
+    <tr>
+        <td>주소 : </td>
+        <td th:text="${phoneBook.address}"></td>
+    </tr>
+    <tr>
+        <td>등록일 : </td>
+        <td>[[${phoneBook.createdDate}]]</td>
+    </tr>
+    <tr>
+        <td>수정일 : </td>
+        <td>[[${phoneBook.modifiedDate}]]</td>
+    </tr>
+</table>
+
+<br>
+|
+<a href="/phoneBook/list">목록</a>
+|
+<a href="/phoneBook/chuga">등록</a>
+|
+<a th:href="@{|/phoneBook/sujung/${phoneBook.id}|}">수정</a>
+|
+<a th:href="@{|/phoneBook/sakje/${phoneBook.id}|}">삭제</a>
+|
+
+</body>
+</html>

@@ -1,0 +1,48 @@
+create database remi;
+create user 'remi'@'localhost' identified by '1234';
+grant all privileges on remi.* to remi@localhost;
+
+create user 'remi'@'192.168.65.1' identified by '1234';
+grant all privileges on remi.* to remi@192.168.65.1;
+
+flush privileges;
+exit
+
+mariadb -u remi -p
+1234
+use remi;
+******************************************************************
+* 메인페이지 : localhost:8083, localhost:8083/
+controller.HomeController
+home/home.html
+******************************************************************
+entity.BaseEntity
+entity.BaseTimeEntity
+******************************************************************
+* 메모장
+1. entity.Memo
+2. dto.MemoDTO
+3. memo/list.html, view.html, chuga.html, sujung.html, sakje.html
+4. repository.MemoRepository <--- interface
+5. service.MemoService (메소드 5개 - list(), view(), chugaProc(), sujung(), sakjeProc())
+6. controller.MemoController (메소드 8개)
+******************************************************************
+* 전화번호부(PhoneBook)
+id
+name
+phone
+address
+날짜 - 등록일, 수정일
+
+1. entity.PhoneBook extends BaseEntity
+2. dto.PhoneBookDTO
+3. phoneBook/list.html, view.html, chuga.html, sujung.html, sakje.html
+4. repository.PhoneBookRepository <--- interface
+5. service.PhoneBookService (메소드 5개 - list(), view(), chugaProc(), sujung(), sakjeProc())
+6. controller.PhoneBookController (메소드 8개)
+******************************************************************
+
+******************************************************************
+
+******************************************************************
+
