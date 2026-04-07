@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<h1>상세보기</h1>
+
+번호 : <span th:text="${guestBook.id}"></span><br>
+이름 : <span th:text="${guestBook.name}"></span><br>
+이메일 : <span th:text="${guestBook.email}"></span><br>
+내용 : <span th:text="${guestBook.content}"></span><br>
+
+<br>
+|
+<a href="/guestBook/list">목록</a>
+|
+<a href="/guestBook/chuga">등록</a>
+|
+<a th:href="@{|/guestBook/sujung/${guestBook.id}|}">수정</a>
+|
+<a th:href="@{|/guestBook/sakje/${guestBook.id}|}">삭제</a>
+|
+
+</body>
+</html>

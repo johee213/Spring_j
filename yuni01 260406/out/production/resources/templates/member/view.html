@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<div style="padding: 20px 0px 0px 0px;">
+    |
+    <a href="/">Home</a>
+    |
+    <a href="/member/list">회원관리</a>
+    |
+    <a href="/memo/list">메모장</a>
+    |
+</div>
+
+<h1>상세보기</h1>
+
+회원번호 : <span th:text="${member.id}"></span><br>
+아이디 : <span th:text="${member.username}"></span><br>
+이름 : <span th:text="${member.name}"></span><br>
+주민번호 : <span th:text="${member.ssn}"></span><br>
+전화번호 : <span th:text="${member.phone}"></span><br>
+이메일 : <span th:text="${member.email}"></span><br>
+주소1 : <span th:text="${member.address1}"></span><br>
+주소2 : <span th:text="${member.address2}"></span><br>
+주소3 : <span th:text="${member.address3}"></span><br>
+주소4 : <span th:text="${member.address4}"></span><br>
+등급 : <span th:text="${member.grade}"></span><br>
+
+<br>
+|
+<a href="/member/list">목록</a>
+|
+<a href="/member/chuga">등록</a>
+|
+<a th:href="@{|/member/sujung/${member.id}|}">수정</a>
+|
+<a th:href="@{|/member/sakje/${member.id}|}">삭제</a>
+|
+
+</body>
+</html>

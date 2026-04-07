@@ -1,0 +1,267 @@
+mariadb -u root -p
+1234
+use mysql;
+
+create database yuni01;
+create user 'yuni01'@'localhost' identified by '1234';
+grant all privileges on yuni01.* to yuni01@localhost;
+flush privileges;
+exit;
+------------------------------------------------------------
+mariadb -u yuni01 -p
+1234
+use yuni01;
+show tables;
+------------------------------------------------------------
+
+localhost:8082
+localhost:8082/
+
+url : localhost:8082 -> templates/index/index.html
+메인페이지 : controller.IndexController
+
+* 회원관리 : member / controller.MemberController
+전체목록 list : localhost:8082/member/list   -> templates/member/list.html
+상세보기 view : localhost:8082/member/view   -> templates/member/view.html
+등록 chuga    : localhost:8082/member/chuga  -> templates/member/chuga.html
+수정 sujung   : localhost:8082/member/sujung -> templates/member/sujung.html
+삭제 sakje    : /member/sakje  -> member/sakje
+
+등록처리 chugaProc  : localhost:8082/member/chugaProc
+수정처리 sujungProc : localhost:8082/member/sujungProc
+삭제처리 sakjeProc  : localhost:8082/member/sakjeProc
+
+
+
+* 게시판관리 : board / controller.BoardController
+전체목록 list : localhost:8082/board/list   -> templates/board/list.html
+상세보기 view : localhost:8082/board/view   -> templates/board/view.html
+등록 chuga    : localhost:8082/board/chuga  -> templates/board/chuga.html
+수정 sujung   : localhost:8082/board/sujung -> templates/board/sujung.html
+삭제 sakje    : localhost:8082/board/sakje  -> templates/board/sakje.html
+
+controller : @Controller
+    IndexController
+    MemberController
+service : @Service
+    MemberService
+repository : @Repository 는 생략한다.
+    MemberRepository <---- interface로 만든다.
+entity
+    Member
+dto
+    MemberDTO
+
+
+회원번호 id
+아이디 username
+비밀번호 password
+이름 name
+주민번호 ssn
+전화번호 phone
+이메일 email
+주소1 address1
+주소2 address2
+주소3 address3
+주소4 address4
+등급 grade
+
+--------------------------------
+
+MemberService
+    getSelectAll(); //전체목록
+    getSelectOne(); //상세보기
+    setInsert();    //등록
+    setUpdate();    //수정
+    setDelete();    //삭제
+
+=================================================================
+
+* 회원관리 : member
+yuni01
+    entity
+        Member
+    dto
+        MemberDTO
+    controller
+        MemberController
+            list();
+            view();
+            chuga();
+            sujung();
+            sakje();
+
+            chugaProc();
+                MemberDTO memberDTO
+                memberService.setInsert(memberDTO); // <--------------------- 1.
+                list페이지로 이동해
+
+            sujungProc();
+            sakjeProc();
+
+
+    service
+        MemberService
+            getSelectAll();
+            getSelectOne();
+            setInsert(MemberDTO memberDTO); //추가        // <--------------------- 2.
+                dto에 들어있는 값을 entity에 옮겨담아라.  // <--------------------- 3.
+                리포지터리의 save(entity); 메소드를 이용해서 entity에 들어있는 값을 저장해라.  // <--------------------- 4.
+
+
+            setUpdate(); //수정
+            setDelete(); //삭제
+
+    repository
+        MemberRepository <--- interface
+
+
+MariaDB [yuni01]> select * from member;
++----+----------+----------+---------------------+----------+----------------+--------------+-----------+----------+---------------+----------------+----------+
+| id | address1 | address2 | address3            | address4 | email          | grade        | name      | password | phone         | ssn            | username |
++----+----------+----------+---------------------+----------+----------------+--------------+-----------+----------+---------------+----------------+----------+
+|  1 | 00000    | 대전     | 중구 선화동         | 111      | hong@gmail.com | 일반회원     | 홍길동    | 1234     | 010-1111-1111 | 123456-1234567 | hong     |
+|  2 | 11111    | 서울     | 송파구 잠실동       | 222      | lee@gmail.com  | 일반회원     | 이성순    | 1234     | 010-2222-2222 | 123456         | lee      |
+|  4 | 33333    | 경기     | 성남시 판교동       | 333      | jang@gmail.com | 관리자       | 장천용    | 1234     | 010-3333-3333 | 123456-1234568 | jang     |
++----+----------+----------+---------------------+----------+----------------+--------------+-----------+----------+---------------+----------------+----------+
+
+[]
+
+Member member = new Member();
+member.setUsername(1);
+member.setPassword("1234");
+member.setName("홍길동");
+member.setSsn("123456-1234567");
+
+[member]
+
+Member member2 = new Member();
+member2.setUsername(2);
+member2.setPassword("1234");
+member2.setName("이성순");
+member2.setSsn("123456");
+
+[member, member2]
+
+Member member3 = new Member();
+member3.setUsername(2);
+member3.setPassword("1234");
+member3.setName("이성순");
+member3.setSsn("123456");
+
+[member, member2, member3]
+
+* 주소줄에 물고가는 방식 : get
+1. querystring  : /member/view?id=3&phone=1234
+2. pathvariable : /member/view/3/1234
+
+
+* MVC 패턴
+Model : repository
+View  : html
+Controller <----- MVC Controller
+                  API Controller
+
+* 메모장 : memo
+@GetMapping() : forwarding
+list   : /memo/list   -> memo/list
+view   : /memo/view   -> memo/view
+chuga  : /memo/chuga  -> memo/chuga
+sujung : /memo/sujung -> memo/sujung
+sakje  : /memo/sakje  -> memo/sakje
+
+@PostMapping() : redirect
+chugaProc  : /memo/chugaProc
+sujungProc : /memo/sujungProc
+sakjeProc  : /memo/sakjeProc
+
+MemoController -> MemoService -> MemoRepository (interface)
+--------------    -----------    --------------
+list()            list()
+view()            view()
+chuga()
+sujung()
+sakje()
+chugaProc()       chugaProc()
+sujungProc()      sujungProc()
+sakjeProc()       sakjeProc()
+
+Memo (엔티티)
+id
+subject
+content
+writer
+
+MemoDTO
+id
+subject
+content
+writer
+
+
+* 주소록 : addressBook
+
+AddressBook
+이름 name
+전화번호 phone
+주소 address
+이메일 email
+=================================================
+
+localhost:8082/guestBook/list
+localhost:8082/guestBook/view/?
+localhost:8082/guestBook/chuga
+localhost:8082/guestBook/sujung/?
+localhost:8082/guestBook/sakje/?
+
+* 방명록 : guestBook
+1. 엔티티 만들기     : GuestBook
+2. DTO 만들기        : GuestBookDTO
+3. html 만들기       : guestBook/list.html, view.html, chuga.html, sujung.html, sakje.html
+4. repository 만들기 : GuestBookRepository <--- interface
+5. service 만들기    : GuestBookService
+                       list()  : return guestBookRepository.findAll();        //반환형 : List<엔티티>
+                       view()  : return guestBookRepository.findById(기본키); //반환형 : 엔티티
+                       chugaProc()  : dto -> entity -> guestBookRepository.save(entity);
+                       sujungProc() : dto -> entity -> guestBookRepository.save(entity);
+                       sakjeProc()  : dto -> entity -> guestBookRepository.delete(entity);
+6. controller 만들기 : GuestBookController
+                       list()   : guestBookService.list(); -> model -> list.html forwarding
+                       view()   : guestBookService.view(); -> model -> view.html forwarding
+                       chuga()  : chuga.html forwarding
+                       sujung() : guestBookService.view(); -> model -> sujung.html forwarding
+                       sakje()  : guestBookService.view(); -> model -> sakje.html forwarding
+                       chugaProc()  : Post방식으로 넘어오는 값을 guestBookDTO 로 받아라.
+                       sujungProc() : Post방식으로 넘어오는 값을 guestBookDTO 로 받아라.
+                       sakjeProc()  : Post방식으로 넘어오는 값을 guestBookDTO 로 받아라.
+
+localhost:8082/guestBook/chuga
+
+* 문의게시판 : qna
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

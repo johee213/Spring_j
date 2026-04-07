@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<div style="padding: 20px 0px 0px 0px;">
+    |
+    <a href="/">Home</a>
+    |
+    <a href="/member/list">회원관리</a>
+    |
+    <a href="/memo/list">메모장</a>
+    |
+</div>
+
+<h1>메모장 목록</h1>
+
+<table border="1">
+    <tr>
+        <th>번호</th>
+        <th>제목</th>
+        <th>작성자</th>
+    </tr>
+
+    <tr th:each="memo : ${list}">
+        <td th:text="${memo.id}"></td>
+        <td>
+            <a th:href="@{|/memo/view/${memo.id}|}" th:text="${memo.subject}"></a>
+        </td>
+        <td th:text="${memo.writer}"></td>
+    </tr>
+</table>
+
+<br>
+|
+<a href="/memo/chuga">등록</a>
+|
+
+</body>
+</html>

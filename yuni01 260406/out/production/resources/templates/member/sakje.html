@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<div style="padding: 20px 0px 0px 0px;">
+    |
+    <a href="/">Home</a>
+    |
+    <a href="/member/list">회원관리</a>
+    |
+    <a href="/memo/list">메모장</a>
+    |
+</div>
+
+<h1>회원삭제</h1>
+
+<form name="form" method="post" action="/member/sakjeProc">
+    <input type="hidden" name="id" th:value="${member.id}">
+
+    아이디 : <span th:text="${member.username}"></span><br>
+    비밀번호 : <input type="password" name="password"><br>
+    이름 : <span th:text="${member.name}"></span><br>
+    주민번호 : <span th:text="${member.ssn}"></span><br>
+    전화번호 : <span th:text="${member.phone}"></span><br>
+    이메일 : <span th:text="${member.email}"></span><br>
+    주소1 : <span th:text="${member.address1}"></span><br>
+    주소2 : <span th:text="${member.address2}"></span><br>
+    주소3 : <span th:text="${member.address3}"></span><br>
+    주소4 : <span th:text="${member.address3}"></span><br>
+    등급 : <span th:text="${member.grade}"></span><br>
+    <button type="submit">삭제하기</button>
+    <button type="button" onclick="location.href='/member/list';">목록으로</button>
+</form>
+
+</body>
+</html>

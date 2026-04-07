@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<div style="padding: 20px 0px 0px 0px;">
+    |
+    <a href="/">Home</a>
+    |
+    <a href="/member/list">회원관리</a>
+    |
+    <a href="/memo/list">메모장</a>
+    |
+</div>
+
+<h1>회원목록</h1>
+
+<table border="1">
+    <tr>
+        <th>회원번호</th>
+        <th>아이디</th>
+        <th>이름</th>
+        <th>전화번호</th>
+        <th>등급</th>
+    </tr>
+
+    <tr th:each="member : ${list}">
+        <td th:text="${member.id}"></td>
+        <td>
+            <a th:href="@{|/member/view/${member.id}|}" th:text="${member.username}"></a>
+        </td>
+        <td th:text="${member.name}"></td>
+        <td th:text="${member.phone}"></td>
+        <td th:text="${member.grade}"></td>
+    </tr>
+</table>
+
+<br>
+|
+<a href="/member/chuga">등록</a>
+|
+
+</body>
+</html>

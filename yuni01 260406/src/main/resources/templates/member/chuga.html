@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<div style="padding: 20px 0px 0px 0px;">
+    |
+    <a href="/">Home</a>
+    |
+    <a href="/member/list">회원관리</a>
+    |
+    <a href="/memo/list">메모장</a>
+    |
+</div>
+
+<h1>회원가입</h1>
+
+<form name="form" method="post" action="/member/chugaProc">
+아이디 : <input type="text" name="username"><br>
+비밀번호 : <input type="password" name="password"><br>
+비밀번호 확인 : <input type="password" name="passwordChk"><br>
+이름 : <input type="text" name="name"><br>
+주민번호 : <input type="text" name="ssn"><br>
+전화번호 : <input type="text" name="phone"><br>
+이메일 : <input type="text" name="email"><br>
+주소1 : <input type="text" name="address1"><br>
+주소2 : <input type="text" name="address2"><br>
+주소3 : <input type="text" name="address3"><br>
+주소4 : <input type="text" name="address4"><br>
+등급 :
+<input type="radio" name="grade" value="일반회원" checked> 일반회원 &nbsp;&nbsp;
+<input type="radio" name="grade" value="관리자"> 관리자
+<br><br>
+<button type="submit">가입하기</button>
+<button type="button" onclick="location.href='/member/list';">목록으로</button>
+</form>
+
+</body>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<div style="padding: 20px 0px 0px 0px;">
+    |
+    <a href="/">Home</a>
+    |
+    <a href="/member/list">회원관리</a>
+    |
+    <a href="/memo/list">메모장</a>
+    |
+</div>
+
+<h1>메모장 상세보기</h1>
+
+번호 : <span th:text="${memo.id}"></span><br>
+제목 : <span th:text="${memo.subject}"></span><br>
+내용 : <span th:text="${memo.content}"></span><br>
+작성자 : <span th:text="${memo.writer}"></span><br>
+
+<br>
+|
+<a href="/memo/list">목록</a>
+|
+<a href="/memo/chuga">등록</a>
+|
+<a th:href="@{|/memo/sujung/${memo.id}|}">수정</a>
+|
+<a th:href="@{|/memo/sakje/${memo.id}|}">삭제</a>
+|
+
+</body>
+</html>

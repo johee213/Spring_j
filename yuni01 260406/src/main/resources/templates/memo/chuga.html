@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<div style="padding: 20px 0px 0px 0px;">
+    |
+    <a href="/">Home</a>
+    |
+    <a href="/member/list">회원관리</a>
+    |
+    <a href="/memo/list">메모장</a>
+    |
+</div>
+
+<h1>메모장 등록</h1>
+
+<form name="form" method="post" action="/memo/chugaProc">
+제목 : <input type="text" name="subject"><br>
+내용 : <textarea name="content" style="width:300px; height:100px;"></textarea><br>
+작성자 : <input type="text" name="writer"><br>
+<br><br>
+<button type="submit">등록하기</button>
+<button type="button" onclick="location.href='/memo/list';">목록으로</button>
+</form>
+
+</body>
+</html>
