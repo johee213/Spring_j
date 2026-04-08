@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<h1>전화번호부 목록</h1>
+
+<table border="1">
+    <tr>
+        <th>구분</th>
+        <th>순번</th>
+        <th>이름</th>
+        <th>전화번호</th>
+        <th>주소</th>
+        <th>등록일</th>
+        <th>수정일</th>
+    </tr>
+
+    <tr th:each="phoneBook, status : ${list}">
+        <td th:switch="${status.even}">
+            <span th:case=true>짝수</span>
+            <span th:case=false>홀수</span>
+        </td>
+        <td th:text="${phoneBook.id}"></td>
+        <td>
+            <a th:href="@{|/phoneBook/view/${phoneBook.id}|}" th:text="${phoneBook.name}"></a>
+        </td>
+        <td th:text="${phoneBook.phone}"></td>
+        <td th:text="${phoneBook.address}"></td>
+        <td>
+            <span th:text="${#strings.substring(phoneBook.createdDate, 0, 10)}"></span><br>
+        </td>
+        <td>
+            <span th:text="${#strings.substring(phoneBook.modifiedDate, 0, 10)}"></span><br>
+        </td>
+    </tr>
+</table>
+
+<br>
+|
+<a href="/phoneBook/chuga">등록</a>
+|
+
+</body>
+</html>
