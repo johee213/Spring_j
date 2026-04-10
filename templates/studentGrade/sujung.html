@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<h2>성적 수정</h2>
+
+<form name="form" method="post" action="/studentGrade/sujungProc">
+    <input type="hidden" name="id" th:value="${studentGrade.id}">
+
+    이름: <input type="text" name="name" required th:value="${studentGrade.name}"><br>
+    국어: <input type="text" name="korScore" th:value="${studentGrade.korScore}"><br>
+    영어: <input type="text" name="engScore" th:value="${studentGrade.engScore}"><br>
+    수학: <input type="text" name="mathScore" th:value="${studentGrade.mathScore}"><br>
+    <button type="submit">수정하기</button>
+    <a th:href="@{/studentGrade/list}">목록으로</a>
+</form>
+
+</body>
+</html>

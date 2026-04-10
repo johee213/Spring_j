@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<h2>성적 상세보기</h2>
+
+이름: <span th:text="${studentGrade.name}"></span><br>
+국어: <span th:text="${studentGrade.korScore}"></span><br>
+영어: <span th:text="${studentGrade.engScore}"></span><br>
+수학: <span th:text="${studentGrade.mathScore}"></span><br>
+
+<br>
+|
+<a href="/studentGrade/list">목록</a>
+|
+<a href="/studentGrade/chuga">등록</a>
+|
+<a th:href="@{|/studentGrade/sujung/${studentGrade.id}|}">수정</a>
+<!--<a th:href="@{/studentGrade/sujung/{id}(id=${studentGrade.id})}">수정</a>-->
+|
+<a th:href="@{|/studentGrade/sakje/${studentGrade.id}|}">삭제</a>
+|
+
+</body>
+</html>

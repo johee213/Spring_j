@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<table border="1" align="center" style="width: 80%;">
+    <tr>
+        <td colspan="7">
+            <h1>회원 목록</h1>
+        </td>
+    </tr>
+    <tr>
+        <th>순번</th>
+        <th>아이디</th>
+        <th>이름</th>
+        <th>주민번호</th>
+        <th>권한</th>
+        <th>등록일</th>
+    </tr>
+
+    <tr th:each="member, status: ${memberList}">
+        <td th:text="${member.id}">순번</td>
+        <td>
+            <a th:href="@{|/member/view/${member.id}|}" th:text="${member.username}"></a>
+        </td>
+        <td th:text="${member.name}">이름</td>
+        <td>
+<!--            <span th:text="${#strings.substring(member.ssn, 0, 8)}"></span>*******-->
+            <span th:text="${member.ssn}"></span>
+        </td>
+        <td th:text="${member.role}">권한</td>
+        <td>
+<!--            <span th:text="${#strings.substring(member.createdDate, 0, 10)}"></span>-->
+            <span th:text="${member.createdDate}"></span>
+        </td>
+    </tr>
+
+</table>
+
+<div style="border: 0px solid black; width: 80%; margin: 0 auto; padding: 10px 0px; text-align: right;">
+    |
+    <a href="/member/chuga">등록</a>
+    |
+</div>
+
+</body>
+</html>

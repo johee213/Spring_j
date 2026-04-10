@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<h2>성적 등록</h2>
+
+<form name="form" method="post" action="/studentGrade/chugaProc">
+    이름: <input type="text" name="name" required><br>
+    국어: <input type="text" name="korScore"><br>
+    영어: <input type="text" name="engScore"><br>
+    수학: <input type="text" name="mathScore"><br>
+    <button type="submit">등록하기</button>
+    <a th:href="@{/studentGrade/list}">목록으로</a>
+</form>
+
+</body>
+</html>

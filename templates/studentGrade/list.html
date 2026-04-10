@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<h2 style="color: navy;">성적 목록</h2>
+<button th:onclick="|location.href='@{/studentGrade/chuga}'|">성적 입력</button>
+<table border="1" style="width: 100%; margin-top: 15px; text-align: center;">
+    <tr style="background-color: #f2f2f2;">
+        <th>이름</th>
+        <th>국어</th>
+        <th>영어</th>
+        <th>수학</th>
+        <th>평균</th>
+    </tr>
+    <tr th:each="s : ${list}">
+        <td>
+            <a th:href="@{/studentGrade/view/{id}(id=${s.id})}" th:text="${s.name}">이름</a>
+            <br>
+            <a th:href="@{|/studentGrade/view/${s.id}|}" th:text="${s.name}">이름</a>
+        </td>
+        <td th:text="${s.korScore}">0</td>
+        <td th:text="${s.engScore}">0</td>
+        <td th:text="${s.mathScore}">0</td>
+        <td>
+            <span th:text="${s.average}"></span>
+            <br>
+            <span th:text="${#numbers.formatDecimal(s.average, 1, 2)}"></span>
+        </td>
+    </tr>
+</table>
+
+</body>
+</html>

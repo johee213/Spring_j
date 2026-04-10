@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<h1>전화번호부 삭제</h1>
+
+<form name="form" method="post" action="/phoneBook/sakjeProc">
+    <input type="hidden" name="id" th:value="${phoneBook.id}">
+
+    <table border="1" align="center" style="width: 80%;">
+        <tr>
+            <td>이름 : </td>
+            <td><span th:text="${phoneBook.name}"></span></td>
+        </tr>
+        <tr>
+            <td>전화번호 : </td>
+            <td><span th:text="${phoneBook.phone}"></span></td>
+        </tr>
+        <tr>
+            <td>주소 : </td>
+            <td><span th:text="${phoneBook.address}"></span></td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <button type="submit">삭제하기</button>
+                <button type="button" onclick="history.back();">이전화면</button>
+                <button type="button" onclick="location.href='/phoneBook/list';">목록으로</button>
+            </td>
+        </tr>
+    </table>
+</form>
+
+</body>
+</html>

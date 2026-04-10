@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<h1>전화번호부 수정</h1>
+
+<form name="form" method="post" action="/phoneBook/sujungProc">
+    <input type="text" name="id" th:value="${phoneBook.id}">
+
+    <table border="1" align="center" style="width: 80%;">
+        <tr>
+            <td>이름 : </td>
+            <td><input type="text" name="name" th:value="${phoneBook.name}"></td>
+        </tr>
+        <tr>
+            <td>전화번호 : </td>
+            <td><input type="text" name="phone" th:value="${phoneBook.phone}"></td>
+        </tr>
+        <tr>
+            <td>주소 : </td>
+            <td><input type="text" name="address" th:value="${phoneBook.address}"></td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <button type="submit">수정하기</button>
+                <button type="button" onclick="history.back();">이전화면</button>
+                <button type="button" onclick="location.href='/phoneBook/list';">목록으로</button>
+            </td>
+        </tr>
+    </table>
+</form>
+
+</body>
+</html>
