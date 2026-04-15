@@ -1,0 +1,195 @@
+mariadb -u root -p
+1234
+use mysql;
+
+create database sbb;
+create user 'sbb'@'localhost' identified by '1234';
+grant all privileges on sbb.* to sbb@localhost;
+flush privileges;
+
+
+entity.Question
+entity.Answer
+
+MariaDB [sbb]> desc question;
++-------------+--------------+------+-----+---------+----------------+
+| Field       | Type         | Null | Key | Default | Extra          |
++-------------+--------------+------+-----+---------+----------------+
+| id          | bigint(20)   | NO   | PRI | NULL    | auto_increment |
+| content     | text         | YES  |     | NULL    |                |
+| create_date | datetime(6)  | YES  |     | NULL    |                |
+| subject     | varchar(200) | YES  |     | NULL    |                |
++-------------+--------------+------+-----+---------+----------------+
+
+MariaDB [sbb]> desc answer;
++-------------+-------------+------+-----+---------+----------------+
+| Field       | Type        | Null | Key | Default | Extra          |
++-------------+-------------+------+-----+---------+----------------+
+| id          | bigint(20)  | NO   | PRI | NULL    | auto_increment |
+| content     | text        | YES  |     | NULL    |                |
+| create_date | datetime(6) | YES  |     | NULL    |                |
+| question_id | bigint(20)  | YES  | MUL | NULL    |                | FK(참조키, 외래키)
++-------------+-------------+------+-----+---------+----------------+
+
+question
+1. 음식은?
+2. 요일은?
+3. 색깔은?
+
+answer
+1. 감자     1
+2. 마라탕   1
+3. 햄버거   1
+4. 칼국수   1
+5. 짬뽕     1
+6. 순대국밥 1
+7. 노랑     3
+8. 금요일   2
+
+
+repository.QuestionRepository
+service.QuestionService
+controller.QuestionController
+
+repository.AnswerRepository
+service.AnswerService
+controller.AnswerController
+
+
+testcase
+
+
+* 쿼리메소드(Query Method)
+And          findBySubjectAndContent(String subject, String content)                 여러 컬럼을 and 로 검색
+Or	         findBySubjectOrContent(String subject, String content)	                  여러 컬럼을 or 로 검색
+Between	     findByCreateDateBetween(LocalDateTime fromDate, LocalDateTime toDate)	  컬럼을 between으로 검색
+LessThan     findByIdLessThan(Long id)	                                              작은 항목 검색
+GreaterThan  findByIdGraterThan(Long id)	                                          큰 항목 검색
+Like	     findBySubjectLike(String subject)	                                      like 검색
+In	         findBySubjectIn(String[] subjects)	                                      여러 값중에 하나인 항목 검색
+OrderBy	     findBySubjectOrderByCreateDateAsc(String subject)                   	 검색 결과를 정렬하여 전달
+
+* 부트스트랩
+https://getbootstrap.kr/docs/5.2/getting-started/download/
+
+bootstrap-5.2.3
+    dist
+        css
+            bootstrap.min.css
+
+resources
+    static
+        css
+            bootstrap.min.css
+        js
+    templates
+        layout
+            layout.html
+            form_errors.html
+            navbar.html
+
+
+	// 타임리프의 시간 관련 라이브러리.
+	implementation group: 'org.thymeleaf.extras', name: 'thymeleaf-extras-java8time', version: '3.0.4.RELEASE'
+
+	// thymeleaf layout 사용을 위해서.
+	implementation 'nz.net.ultraq.thymeleaf:thymeleaf-layout-dialect'
+
+    // validation
+	implementation 'org.springframework.boot:spring-boot-starter-validation'
+
+Reload
+Sync
+
+공통 탬플릿
+
+http://localhost:8084/question/list
+http://localhost:8084/question/list?page=0
+
+http://localhost:8084/question/list?page=7
+
+
+http://localhost:8084/question/list?id=hong&name=gildong&age=11
+
+@RequestParam("id") String id
+@RequestParam("name") String name
+@RequestParam("age") String age
+
+
+http://localhost:8084/question/view/5    <----- pathvariable
+@Pathvariable("id") Long id
+
+http://localhost:8084/question/view?page=5 <----- querystring
+@RequestParam("id") String id
+
+
+http://localhost:8084/question/list
+http://localhost:8084/question/list?page=0
+
+* root url
+http://localhost:8084
+http://localhost:8084/
+
+IndexController
+
+
+* SpringSecurity
+
+// thymeleaf springsecurity6
+implementation 'org.thymeleaf.extras:thymeleaf-extras-springsecurity6'
+
+// spring security
+implementation 'org.springframework.boot:spring-boot-starter-security'
+testImplementation 'org.springframework.security:spring-security-test'
+
+http://localhost:8084/logout
+
+config.SecurityConfig
+
+
+/css/**
+/css/aaa/bbb/ccc/**
+
+* 회원가입 : SiteUser
+entity.SiteUser
+dto.SiteUserDTO
+repository.SiteUserRepository
+service.SiteUserService
+controller.SiteUserController
+
+http://localhost:8084/siteUser/chuga
+
+
+use sbb;
+show tables;
+select * from site_user;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
