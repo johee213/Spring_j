@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+      layout:decorate="~{layout/layout}">
+
+<div layout:fragment="content" class="container my-3">
+    <h2 class="border-bottom py-2" th:text="${question.subject}"></h2>
+    <div class="card my-3">
+        <div class="card-body">
+            <div class="card-text" style="white-space: pre-line;" th:text="${question.content}"></div>
+            <div class="d-flex justify-content-end">
+                <div class="badge bg-light text-dark p-2 text-start">
+
+                    <div class="mb-2">
+                        <span th:if="${question.author != null}" th:text="${question.author.username}"></span>
+                    </div>
+
+                    <div th:text="${#temporals.format(question.createDate, 'yyyy-MM-dd HH:mm')}"></div>
+
+                    <div class="my-3">
+                        <a th:href="@{|/question/sujung/${question.id}|}" class="btn btn-sm btn-outline-secondary"
+                           sec:authorize="isAuthenticated()"
+                           th:if="${question.author != null and #authentication.getPrincipal().getUsername() == question.author.username}"
+                           th:text="수정"></a>
+
+                        <a th:href="@{|/question/sakje/${question.id}|}" class="btn btn-sm btn-outline-secondary"
+                           sec:authorize="isAuthenticated()"
+                           th:if="${question.author != null and #authentication.getPrincipal().getUsername() == question.author.username}"
+                           th:text="삭제"></a>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <h5 class="border-bottom my-3 py-2" th:text="|${#lists.size(question.answerList)}개의 답변이 있습니다.|"></h5>
+
+    <div class="card my-3" th:each="answer : ${question.answerList}">
+        <div class="card-body">
+            <div class="card-text" style="white-space: pre-line;" th:text="${answer.content}"></div>
+            <div class="d-flex justify-content-end">
+                <div class="badge bg-light text-dark p-2 text-start">
+                    <div th:text="${#temporals.format(answer.createDate, 'yyyy-MM-dd HH:mm')}"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+<!--    <form name="answerChugaForm" method="post" action="/answer/chugaProc" class="my-3" th:object="${answerDTO}">-->
+<!--    <input type="text" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>-->
+
+    <form name="answerChugaForm" method="post" th:action="@{/answer/chugaProc}" class="my-3" th:object="${answerDTO}">
+
+    <div th:replace="~{layout/form_errors :: formErrorsFragment}"></div>
+
+    <input type="hidden" name="questionId" th:value="${question.id}">
+
+<!--    <textarea rows="5" class="form-control" th:field="*{content}"></textarea>-->
+        <textarea th:field="*{content}" class="form-control" rows="5" sec:authorize="isAnonymous()" disabled></textarea>
+        <textarea th:field="*{content}" class="form-control" rows="5" sec:authorize="isAuthenticated()"></textarea>
+
+    <button type="button" class="btn btn-primary my-2" sec:authorize="isAnonymous()">로그인 후 이용가능</button>
+    <button type="submit" class="btn btn-primary my-2" sec:authorize="isAuthenticated()">답변등록</button>
+    </form>
+</div>
+
+</html>
