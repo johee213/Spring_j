@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<h2>강의 정보 삭제</h2>
+
+<form name="sakjeForm" method="post" action="/course/sakjeProc">
+<input type="hidden" name="id" th:value="${course.id}">
+
+강의명 : <span th:text="${course.title}"></span><br>
+강사명 : <span th:text="${course.instructor}"></span><br>
+설명 : [[${course.description}]]<br>
+<button type="submit">삭제하기</button>
+</form>
+
+</body>
+</html>
