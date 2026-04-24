@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<h2>차시 정보 삭제</h2>
+
+<form name="sakjeForm" method="post" action="/lesson/sakjeProc">
+  <input type="hidden" name="id" th:value="${lesson.id}">
+  <input type="hidden" name="courseId" th:value="${lesson.course.id}">
+
+  차시 제목 : <span th:text="${lesson.title}"></span><br>
+  영상 URL : <span th:text="${lesson.videoUrl}"></span><br>
+  정렬 순서 : <span th:text="${lesson.sequence}"></span><br>
+  <button type="submit">삭제하기</button>
+</form>
+
+</body>
+</html>

@@ -23,10 +23,12 @@ MariaDB [lms]> select * from lesson;
 2 rows in set (0.001 sec)
 
 
+@{/lesson/view/{id}(id=${lesson.id})}
+
+@{|/lesson/view/${lesson.id}|}
 
 
-
-
+config.WebConfig
 
 
 

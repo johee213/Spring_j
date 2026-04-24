@@ -39,10 +39,10 @@ public class CourseController {
             return "redirect:/";
         }
 
-        //List<Lesson> lessonList = lessonService.view(id);
-
+        List<Lesson> lessonList = lessonService.list(id);
 
         model.addAttribute("course", course);
+        model.addAttribute("lessonList", lessonList); //차시 리스트
         return "course/view";
     }
 

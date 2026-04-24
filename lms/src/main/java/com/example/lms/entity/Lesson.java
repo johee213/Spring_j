@@ -19,4 +19,7 @@ public class Lesson {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "course_id")
     private Course course;     // 연관 관계 설정
+
+    private String fileName;
+    private String fileOrigin;
 }

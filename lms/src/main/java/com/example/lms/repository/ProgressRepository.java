@@ -1,0 +1,8 @@
+package com.example.lms.repository;
+
+
+import com.example.lms.entity.Progress;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface ProgressRepository extends JpaRepository<Progress, Long> {
+}
