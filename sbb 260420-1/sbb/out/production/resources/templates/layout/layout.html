@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+  <meta charset="utf-8">
+  <title>Hello, sbb!</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.min.css}">
+</head>
+<body>
+
+<!-- 네비게이션바 -->
+<nav th:replace="~{layout/navbar :: navbarFragment}"></nav>
+
+<!-- 본문 내용 시작 -->
+<th:block layout:fragment="content"></th:block>
+<!-- 본문 내용 종료 -->
+
+<!-- Bootstrap JS -->
+<script th:src="@{/js/bootstrap.min.js}"></script>
+
+<th:block layout:fragment="script"></th:block>
+
+</body>
+</html>
