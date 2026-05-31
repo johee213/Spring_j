@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
+
+<!--th 타임리프==템플릿용?-->
+<!--layout/script_header 여기파일안에 script_header 파일이있다 이거를 이자리에 써라-->
+<div th:replace="~{layout/script_header :: script_header}"></div>
+<body>
+<!--네비-->
+<div th:replace="~{layout/navbar :: navbar}"></div>
+<!--본문시작-->
+<!--다른건 고정이고 본문만 변경해서 게시판 회원가입등등 만들면됨-->
+<th:block layout:fragment="content" class="content"></th:block>
+
+<div th:replace="~{layout/footer :: footer}"></div>
+
+</body>
+</html>

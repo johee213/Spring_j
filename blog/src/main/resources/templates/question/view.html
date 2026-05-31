@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<h1> 상세보기 </h1>
+
+번호: <span th:text="${question.id}"></span><br>
+제목: <span th:text="${question.subject}"></span><br>
+내용: <span th:text="${question.content}"></span><br>
+<!--날짜: <span th:text="${question.create}"></span><br>-->
+
+
+
+
+|
+<a th:href="@{|/question/sujung/${question.id}|}">수정</a>
+|
+<a th:href="@{|/question/sakje/${question.id}|}">삭제</a>
+|
+
+
+</body>
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<table border="1">
+    <tr>
+
+        <th>순번</th>
+        <th>제목</th>
+        <th>내용</th>
+<!--        <th>등록일</th>-->
+
+    </tr>
+
+    <tr th:each="question, status : ${list}">
+
+        <td th:text="${question.id}"></td>
+        <td>
+            <a th:href="@{|/question/view/${question.id}|}" th:text="${question.subject}"></a>
+        </td>
+        <td th:text="${question.content}"></td>
+<!--         <td>-->
+<!--            <span th:text="${#strings.substring(question.createDate, 0, 10)}"></span><br>-->
+<!--        </td>-->
+
+    </tr>
+
+
+
+</table>
+
+
+
+
+<!--<a th:href="@{|/question/sujung/${question.id}|}">수정</a>-->
+
+<!--|-->
+<!--<a th:href="@{|/question/sakje/${question.id}|}">삭제</a>-->
+<!--|-->
+<!--|-->
+<!--<a href="/question/list">목록</a>-->
+<!--|-->
+<a href="/question/chuga">등록</a>
+
+
+
+
+
+
+</body>
+</html>

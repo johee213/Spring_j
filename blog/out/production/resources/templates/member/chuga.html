@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      layout:decorate="~{layout/layout}"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
+<div layout:fragment="content" class="container mt-3">
+    <p>&nbsp;</p>
+
+<!--    스프링시큐레이터가 있으면 th 넣어야함-->
+    <form name="chugaForm" method="post" action="/member/chugaProc">
+        <div class="mb-3">
+            <label for="username">Username:</label>
+<!--            name 꼭바꿔야함 -->
+            <input type="text" class="form-control" id="username" placeholder="Enter username" name="username">
+        </div>
+        <div class="mb-3">
+            <label for="password">Password:</label>
+            <input type="password" class="form-control" id="password" placeholder="Enter password" name="password">
+        </div>
+        <div class="mb-3 mt-3">
+            <label for="email">Email:</label>
+            <input type="text" class="form-control" id="email" placeholder="Enter email" name="email">
+        </div>
+        <button id="btn-save" class="btn btn-secondary">회원가입</button>
+    </form>
+
+
+</div>
+
+</html>
+
+
